@@ -1,4 +1,4 @@
-import { Breadcrumb, Layout, theme } from 'antd';
+import { Breadcrumb, Layout } from 'antd';
 import React from 'react';
 
 const { Content } = Layout;
@@ -9,10 +9,6 @@ type Props = {
 };
 
 function ContentField({ children, breadCrumb }: Props) {
-	const {
-		token: { colorBgContainer },
-	} = theme.useToken();
-
 	return (
 		<Content style={{ margin: '0 16px' }}>
 			<Breadcrumb style={{ margin: '16px 0' }}>
@@ -25,15 +21,7 @@ function ContentField({ children, breadCrumb }: Props) {
 						);
 					})}
 			</Breadcrumb>
-			<div
-				style={{
-					padding: 24,
-					minHeight: '70vh',
-					background: colorBgContainer,
-				}}
-			>
-				{children}
-			</div>
+			<div className="bg-white min-h-[70vh] p-6 flex">{children}</div>
 		</Content>
 	);
 }

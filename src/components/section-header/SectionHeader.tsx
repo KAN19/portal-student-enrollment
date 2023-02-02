@@ -17,7 +17,7 @@ function SectionHeader({ children }: Props) {
 				alignItems: 'center',
 			}}
 		>
-			<div className="font-semibold text-2xl">{children}</div>
+			<div className="font-semibold text-2xl w-full">{children}</div>
 		</Header>
 	);
 }
