@@ -5,10 +5,13 @@ import { Button, message, Steps, Form } from 'antd';
 import UploadFileStep from './steps/UploadFileStep';
 import PersonalInfoStep from './steps/PersonalInfoStep';
 import MajorInfoStep from './steps/MajorInfoStep';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
 function RegisterPage({}: Props) {
+	const navigate = useNavigate();
+
 	const [form] = Form.useForm();
 	const steps = [
 		{
@@ -21,7 +24,7 @@ function RegisterPage({}: Props) {
 		},
 		{
 			title: 'Lựa chọn nguyện vọng',
-			content: <MajorInfoStep />,
+			content: <MajorInfoStep form={form} />,
 		},
 	];
 
@@ -29,13 +32,43 @@ function RegisterPage({}: Props) {
 	const [formContent, setFormContent] = useState({});
 
 	const handleSubmitProcess = () => {
-		console.log(formContent);
-		message.success('Processing complete!');
+		validateData().then((data) => {
+			message.success('Đăng ký thành công');
+			navigate('/');
+			console.log(data);
+		});
+	};
+
+	const validateData = async () => {
+		return new Promise((resolve, reject) => {
+			form.validateFields()
+				.then(() => {
+					const fieldValues = form.getFieldsValue();
+					let newUpdateContent = {
+						...formContent,
+						...fieldValues,
+					};
+					if (fieldValues['studentDob']) {
+						newUpdateContent = {
+							...formContent,
+							...fieldValues,
+							studentDob:
+								fieldValues['studentDob'].format('YYYY-MM-DD'),
+						};
+					}
+					setFormContent(newUpdateContent);
+					resolve(newUpdateContent);
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
 	};
 
 	const handleNextPhase = () => {
-		setFormContent({ ...form.getFieldsValue() });
-		setCurrent(current + 1);
+		validateData().then(() => {
+			setCurrent(current + 1);
+		});
 	};
 
 	const prev = () => {

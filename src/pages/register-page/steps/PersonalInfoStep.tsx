@@ -1,4 +1,4 @@
-import { Form, FormInstance, Input } from 'antd';
+import { DatePicker, Form, FormInstance, Input } from 'antd';
 import React from 'react';
 
 type Props = {
@@ -6,6 +6,16 @@ type Props = {
 };
 
 function PersonalInfoStep({ form }: Props) {
+	const config = {
+		rules: [
+			{
+				type: 'object' as const,
+				required: true,
+				message: 'Please select time!',
+			},
+		],
+	};
+
 	return (
 		<Form
 			form={form}
@@ -15,23 +25,25 @@ function PersonalInfoStep({ form }: Props) {
 			autoComplete="off"
 		>
 			<Form.Item
-				label="Username"
-				name="username"
+				label="Họ và tên"
+				name="fullName"
 				rules={[
 					{ required: true, message: 'Please input your username!' },
 				]}
 			>
 				<Input />
 			</Form.Item>
-
+			<Form.Item name="studentDob" label="Ngày sinh" {...config}>
+				<DatePicker />
+			</Form.Item>
 			<Form.Item
-				label="Password"
-				name="password"
+				label="CMND/CCCD"
+				name="identityNumber"
 				rules={[
-					{ required: true, message: 'Please input your password!' },
+					{ required: true, message: 'Please input identity number' },
 				]}
 			>
-				<Input.Password />
+				<Input />
 			</Form.Item>
 		</Form>
 	);
