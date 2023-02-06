@@ -52,8 +52,7 @@ function RegisterPage({}: Props) {
 						newUpdateContent = {
 							...formContent,
 							...fieldValues,
-							studentDob:
-								fieldValues['studentDob'].format('YYYY-MM-DD'),
+							studentDob: fieldValues['studentDob'].toISOString(),
 						};
 					}
 					setFormContent(newUpdateContent);

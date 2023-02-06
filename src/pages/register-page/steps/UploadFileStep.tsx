@@ -79,9 +79,9 @@ function UploadFileStep({ form }: Props) {
 			<Form.Item
 				name="highSchoolCert"
 				label="Giấy chứng nhận tốt nghiệp THPT"
-				rules={[
-					{ required: true, message: 'Please upload this image!' },
-				]}
+				// rules={[
+				// 	{ required: true, message: 'Please upload this image!' },
+				// ]}
 				valuePropName="file"
 				getValueFromEvent={normFile}
 			>
@@ -108,9 +108,9 @@ function UploadFileStep({ form }: Props) {
 				name="highSchoolResult"
 				label="Kết quả thi THPT"
 				valuePropName="file"
-				rules={[
-					{ required: true, message: 'Please upload this image!' },
-				]}
+				// rules={[
+				// 	{ required: true, message: 'Please upload this image!' },
+				// ]}
 				getValueFromEvent={normFile}
 			>
 				<Upload

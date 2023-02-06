@@ -36,6 +36,15 @@ function PersonalInfoStep({ form }: Props) {
 			<Form.Item name="studentDob" label="Ngày sinh" {...config}>
 				<DatePicker />
 			</Form.Item>
+            <Form.Item
+				label="Địa chỉ email liên lạc"
+				name="email"
+				rules={[
+					{ required: true, message: 'Please input email address' },
+				]}
+			>
+				<Input />
+			</Form.Item>
 			<Form.Item
 				label="CMND/CCCD"
 				name="identityNumber"
