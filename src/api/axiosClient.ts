@@ -1,11 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { Local } from "helpers/function";
-import queryString from "query-string";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import queryString from 'query-string';
 
 const axiosClient = axios.create({
-	baseURL: process.env.API_ENDPOINT ?? "",
+	baseURL: process.env.REACT_APP_BASE_URL ?? '',
 	headers: {
-		"content-type": "application/json",
+		'content-type': 'application/json',
 	},
 	paramsSerializer: {
 		encode: (params: any) => queryString.stringify(params),

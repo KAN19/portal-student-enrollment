@@ -1,10 +1,11 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import enrollingStudentSlice from './slices/enrollingStudentSlice';
 // import testSlice from "./slices/testSlice";
 
 const store = configureStore({
 	reducer: {
-		// testSlice: testSlice,
+		enrollingStudentSlice: enrollingStudentSlice,
 	},
 });
 

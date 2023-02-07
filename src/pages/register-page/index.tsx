@@ -6,11 +6,15 @@ import UploadFileStep from './steps/UploadFileStep';
 import PersonalInfoStep from './steps/PersonalInfoStep';
 import MajorInfoStep from './steps/MajorInfoStep';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'stores';
+import { studentEnrolling } from 'stores/slices/enrollingStudentSlice';
+import { EnrollingStudentRequest } from 'models/enrollingStudent';
 
 type Props = {};
 
 function RegisterPage({}: Props) {
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
 
 	const [form] = Form.useForm();
 	const steps = [
@@ -35,7 +39,7 @@ function RegisterPage({}: Props) {
 		validateData().then((data) => {
 			message.success('Đăng ký thành công');
 			navigate('/');
-			console.log(data);
+			dispatch(studentEnrolling(data as EnrollingStudentRequest));
 		});
 	};
 
